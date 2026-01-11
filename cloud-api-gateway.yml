@@ -3,12 +3,12 @@ spring:
     gateway:
       routes:
         - id: inventory-service
-          uri: http://localhost:2011
+          uri: ${SERVICE_URL1:http://localhost:2011}
           predicates:
             - Path=/inventory/**
 
         - id: library-mvc-project
-          uri: http://localhost:2010
+          uri: ${SERVICE_URL2:http://localhost:2010}
           predicates:
             - Path=/library/**
 
@@ -17,7 +17,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:9091/eureka
+      defaultZone: ${EUREKA_URL:http://localhost:9091/eureka}
 
 server:
   port: 9090
